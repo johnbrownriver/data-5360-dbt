@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: fact_sales
+    description: "Individual Order Fact"
+    meta:
+      grain: "One record per orderline"
+  - name: oliver_dim_customer
+    description: "Order Customer Dimension"
+    meta:
+      grain: "One record per customer"
+  - name: oliver_dim_date
+    description: "Order Date Dimension"
+    meta:
+      grain: "One record per date"
+  - name: oliver_dim_employee
+    description: "Order Employee Dimension"
+    meta:
+      grain: "One record per employee"
+  - name: oliver_dim_product
+    description: "Order Product Dimension"
+    meta:
+      grain: "One record per product"
+  - name: oliver_dim_store
+    description: "Order Store Dimension"
+    meta:
+      grain: "One record per store"
