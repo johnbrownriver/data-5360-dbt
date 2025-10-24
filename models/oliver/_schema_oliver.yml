@@ -25,3 +25,12 @@ models:
     description: "Order Store Dimension"
     meta:
       grain: "One record per store"
+  - name: stg_employee_certifications
+    description: |
+      Staging model for employee certifications.
+      Each record represents a certification an employee has received.
+  - name: fact_certification
+    description: |
+      Employee Certification Fact.
+      The grain of this table is certification + employee + date
+      Each record represents the name of a certification received by an employee on a given date at a given price.
