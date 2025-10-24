@@ -11,3 +11,4 @@ sources:
       - name: customer
       - name: product
       - name: employee
+      - name: employee_certifications
