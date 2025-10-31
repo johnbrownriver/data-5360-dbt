@@ -1,0 +1,22 @@
+version: 2
+
+sources:
+- name: eco_essentials_email_marketing_landing
+  database: group7project
+  schema: group7_cloudemailevents
+  tables:
+    - name: marketing_emails
+- name: eco_essentials_online_purchases_landing
+  database: group7project
+  schema: group7_onlinepurchases_transactional_db
+  quoting:
+      identifier: true
+    
+  tables:
+    - name: customer
+    - name: order
+      identifier: ORDER 
+    - name: order_line
+      identifier: ORDER_LINE
+    - name: product
+    - name: promotional_campaign
