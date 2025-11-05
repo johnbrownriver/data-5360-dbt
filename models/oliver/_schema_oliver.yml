@@ -15,10 +15,18 @@ models:
       grain: "One record per date"
   - name: oliver_dim_employee
     description: "Order Employee Dimension"
+    columns:
+      - name: employee_key
+        tests:
+          - unique
     meta:
       grain: "One record per employee"
   - name: oliver_dim_product
     description: "Order Product Dimension"
+    columns:
+      - name: product_key
+        tests:
+          - not_null
     meta:
       grain: "One record per product"
   - name: oliver_dim_store
@@ -29,8 +37,28 @@ models:
     description: |
       Staging model for employee certifications.
       Each record represents a certification an employee has received.
+    columns:
+      - name: certification_name
+        tests:
+          - accepted_values:
+              values:
+                - 'Inventory Management'
+                - 'Cash Handling and Security'
+                - 'Workplace Safety'
+                - 'Point of Sale Operations'
+                - 'Customer Service Excellence'
+                - 'Product Knowledge Level 2'
+                - 'Conflict Resolution'
+                - 'Strategic Retail Operations'
+                - 'Leadership and Coaching'    
   - name: fact_certification
     description: |
       Employee Certification Fact.
       The grain of this table is certification + employee + date
       Each record represents the name of a certification received by an employee on a given date at a given price.
+    columns:
+      - name: employee_key
+        tests:
+          - relationships:
+              field: employee_key
+              to: ref('oliver_dim_employee')
