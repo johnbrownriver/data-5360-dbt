@@ -1,0 +1,65 @@
+version: 2
+
+models:
+  - name: dim_campaign_eco
+    description: "EcoEssentials Campaign Dimension"
+    columns:
+    - name: Campaign_Key
+      tests:
+        - unique
+  - name: dim_customer_eco
+    description: "EcoEssentials Customer Dimension"
+    columns:
+    - name: Customer_Key
+      tests:
+        - unique
+  - name: dim_date_eco
+    description: "EcoEssentials Date Dimension"
+    columns:
+    - name: Date_Key
+      tests:
+        - unique
+    - name: Full_Date
+      tests:
+        - not_null
+  - name: dim_email_eco
+    description: "EcoEssentials Email Dimension"
+    columns:
+      - name: email_id
+        tests:
+          - not_null
+  - name: dim_product_eco
+    description: "EcoEssentials Product Dimension"
+    columns:
+    - name: Product_Key
+      tests:
+        - unique
+    - name: Product_Type
+      tests:
+        - accepted_values:
+            values:
+            - "accessory"
+            - "cutting_board"
+            - "pan"
+            - "pot"
+            - "storage"
+            - "utensil"
+  - name: fact_email_event
+    description: "Email event fact. Grain: Individual email interaction."
+    columns:
+    - name: Email_Key
+      tests:
+        - relationships:
+            to: ref('dim_email_eco')
+            field: Email_Key
+  - name: fact_order_line
+    description: "Order line fact. Grain: Individual item order."
+    columns:
+    - name: order_line_key
+      tests:
+        - unique
+    - name: Customer_Key
+      tests:
+        - relationships:
+            to: ref('dim_customer_eco')
+            field: Customer_Key
