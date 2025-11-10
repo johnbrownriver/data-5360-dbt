@@ -10,13 +10,17 @@ sources:
   database: group7project
   schema: group7_onlinepurchases_transactional_db
   quoting:
-      identifier: true
+      identifier: false
     
   tables:
     - name: customer
     - name: order
       identifier: ORDER 
+      quoting:
+        identifier: true
     - name: order_line
       identifier: ORDER_LINE
+      quoting:
+        identifier: true
     - name: product
     - name: promotional_campaign
